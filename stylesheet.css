@@ -168,11 +168,11 @@
     text-align: center;
   }
 
-  .message {
+   .message {
     padding: 15px 40px;
-    background-color: #05156d;
+    background-image: linear-gradient(rgb(89, 89, 134),black);
     cursor: pointer;
-    box-shadow: 0 7px #8593df;
+    box-shadow: 0 7px #6b6b6b;
   }
 
   .message:active {
