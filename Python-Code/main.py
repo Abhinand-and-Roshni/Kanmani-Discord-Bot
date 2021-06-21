@@ -25,6 +25,7 @@ cowboy_emoji = "\U0001F920" #cowboy smiling
 tick_emoji = "\U00002705" #tick mark/good/done
 X_emoji = "\U0000274C" #X mark/incomplete/bad
 crying_emoji = "\U0001F62D" #tears flooding down face
+exclamation_em = "\U0000203C" #double !!
 
 #BOT LOGIN
 client = commands.Bot(command_prefix='!!')
@@ -46,6 +47,50 @@ async def on_message(message):
   if message.content.startswith('!!ok kanmani'):
     await message.channel.send(f"Hi {message.author.mention}! I'm a bot designed by students for students! From productivity to chilling - Kanmani's got your back.\n\n Do you want to know what I can do? Try the **!!info** command!\n Have a good day!")
 
+#Reminders 
+@client.command(case_insensitive = True, aliases = ["remind", "remindme", "remind_me"])
+@commands.bot_has_permissions(attach_files = True, embed_links = True)
+async def reminder(ctx, time, *, reminder):
+    print(time)
+    print(reminder)
+    user = ctx.message.author
+    rem_em = discord.Embed(title = "Reminder!", description = reminder, colour=random.randint(0, 0xffffff))
+    rem_em.set_footer(text="Kanmani | Be mindful | !!ok kanmani ", icon_url=f"{client.user.avatar_url}")
+    seconds = 0
+    if reminder is None:
+        rem_em.add_field(name='Warning', value='Please specify what do you want me to remind you about.') # Error message
+    if time.lower().endswith("d"):
+        seconds += int(time[:-1]) * 60 * 60 * 24
+        counter = f"{seconds // 60 // 60 // 24} days"
+    if time.lower().endswith("h"):
+        seconds += int(time[:-1]) * 60 * 60
+        counter = f"{seconds // 60 // 60} hours"
+    elif time.lower().endswith("m"):
+        seconds += int(time[:-1]) * 60
+        counter = f"{seconds // 60} minutes"
+    elif time.lower().endswith("s"):
+        seconds += int(time[:-1])
+        counter = f"{seconds} seconds"
+    if seconds == 0:
+        rem_em.add_field(name='Warning',
+                        value='Specify a proper duration. \n Example: `!!reminder 15m Get the groceries from the car!`')
+    elif seconds < 10:
+        rem_em.add_field(name='Warning',
+                        value='You need a reminder for that time period? The minimum time is 5 mins for a reminder. Try again  \n Example: `!!reminder 15m Get the groceries from the car!`')
+    elif seconds > 172800:
+        rem_em.add_field(name='Warning', value='That duration is too long!\nMaximum duration is 2 days.')
+    else:
+        await ctx.send(f"{ctx.author.mention}, I will remind you regarding  `{reminder}` in {counter}. Have a great day!")
+        await asyncio.sleep(seconds)
+        await ctx.send(f"Attention, {ctx.author.mention}!")
+        em_reminder = await ctx.send(embed = rem_em)
+        await em_reminder.add_reaction(exclamation_em)
+        await em_reminder.add_reaction(tick_emoji)
+        await em_reminder.add_reaction(X_emoji)
+        await em_reminder.add_reaction(heart_emoji)
+        return
+    await ctx.send(embed=rem_em)
+    
 #POMODORO TECHNIQUE
 @client.command()
 async def pomo(ctx):
