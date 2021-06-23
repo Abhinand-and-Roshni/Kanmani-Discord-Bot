@@ -1,187 +1,381 @@
 * {
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-  }
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
 
-  body{
-    margin: 0;
-    font-family: "Verdana";
-    background-color: rgb(240, 240, 240);
-  }
+body{
+  margin: 0;
+  font-family: "Verdana";
+  background-color: rgba(255, 255, 255, 0);
+  background-image: url("discoo.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
-  a{
-    text-decoration: none;
-  }
+}
 
-  .container{
-    max-width: 1170px;
-    width: 100%;
-    height: 100%;
-    padding: 0 15px;
-    margin: 0 auto;
-  }
+a{
+  text-decoration: none;
+}
 
-  .top-wrapper{
-    opacity: 1.0;
-    padding: 180px 0 100px 0;
-    text-align: center;
-    background-color:rgb(128, 128, 128);
-    background-size: cover;
-    color: rgb(0, 0, 0);
-  }
+.container{
+  padding: 15px 15px 15px 15px;
+  margin: auto;
+}
+.devs{
+height: 1000px;
 
-  .top-wrapper:hover{
-    transition: all 0.5s ease-in-out;
-    color:rgb(0, 0, 0);
-    
-  }
+}
+.section{
 
-  .top-wrapper h1{
-    font-size: 70px;
-    letter-spacing: 5px;
-    margin-bottom: 12px;
-  }
+  margin-left: 100px;
+  margin-right: 70px;
+  opacity: 1.0;
+  padding: 60px 80px 5px 80px;
+  margin-top: 80px;
+  margin-bottom: 550px;
+  text-align: center;
+  background-size: cover;
+  color: rgb(0, 0, 0);
+}
 
-  .top-wrapper h3{
-    font-size: 30px;
-    margin-bottom: 12px;
-  }
+.top-wrapper{
+  background-image: url("discordblur.png");
+  opacity: 1.0;
+  padding: 60px 100px 30px 100px;
+  margin: 0px;
+  text-align: center;
+  background-color:rgb(128, 128, 128);
+  background-size: cover;
+  color: rgb(0, 0, 0);
+}
 
-  .top-wrapper p {
-    font-size: 23px;
-    margin-bottom: 2px;
-    letter-spacing: 2px;
-  }
+.top-wrapper:hover{
+  transition: all 0.5s ease-in-out;
+  color:rgb(0, 0, 0);
+  background-image: url("discord-bots.png");
+  text-shadow: 2px 2px 5px aliceblue; 
+}
 
-  header{
-    height: 70px;
-    width: 100%;
-    background-color: rgb(70, 70, 70);
-    position :fixed;
-  }
-  
-  .header-left a{
-    line-height: 70px;
-    padding:0px 20px;
-    font-size: 40px;
-    color: white;
-    display: block;
-    float:left;
-  }
+.top-wrapper h1{
+  font-size: 70px;
+  letter-spacing: 5px;
+  margin-bottom: 12px;
+}
+.top-wrapper h1{
+  color: aliceblue;
+}
+.top-wrapper h3{
+  font-size: 30px;
+  margin-bottom: 12px;
+}
 
-  .header-right a{
-    line-height: 70px;
-    padding: 0 25px;
-    color: white;
-    display: block;
-    float: right;
-  }
+.top-wrapper p {
+  font-size: 23px;
+  margin-bottom: 2px;
+  letter-spacing: 2px;
+  color: aliceblue;
+}
 
-  .header-right a:hover{
-    transition: all 0.2s;
-    background-color: #c6cadf85;
-  }
+header{
+  height: 70px;
+  color: black;
+  width: 100%;
+  background-color:#7289dace;
+  position :fixed;
+  top:0;
+  z-index: 9999;
+}
 
-  .header-left a:hover{
-    transition: all 0.2s;
-    background-color: #c6cadf85;
-  }
+.header-left a{
+  line-height: 70px;
+  padding:0px 20px;
+  font-size: 40px;
+  color: white;
+  display: block;
+  float:left;
+}
+
+.header-right a{
+  line-height: 70px;
+  padding: 0 25px;
+  color: white;
+  display: block;
+  float: right;
+}
+
+.header-right a:hover{
+  transition: all 0.2s;
+  background-color: #c6cadf67;
+  color: white;
+}
+
+.header-left a:hover{
+  transition: all 0.2s;
+  background-color: #c6cadf6c;
+}
 
 
-  footer p {
-    color: white;
-    font-size: 15px;
-  }
+footer p {
+  color: white;
+  font-size: 15px;
+  text-align: left;
+}
 
-  footer {
-    padding-top: 30px;
-    padding-bottom: 20px;
-    background-color: rgb(70, 70, 70);
-    color: white;
-  }
-  .btn {
-    margin-top: 30px;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 30px 30px;
-    color: white;
-    display: inline-block;
-    opacity: 0.8;
-    border-radius: 4px;
-  }
+footer {
+  margin-top: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #7289dac7;
+  color: white;
+}
+.btn {
+  margin-top: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 30px 30px;
+  color: white;
+  display: inline-block;
+  opacity: 0.7;
+  border-radius: 4px;
+}
 
-  .btn:hover {
-    opacity: 1;
-  }
-  .btn-wrapper {
-    margin: 20px 0;
-  }
+.btn:hover {
+  opacity: 0.9;
+}
+.btn-wrapper {
+  margin: 20px 0;
+}
 
-  .btn-wrapper p {
-    margin: 10px 0;
-  }
-  .message-wrapper {
-    border-bottom: 1px solid #eee;
-    padding-bottom: 80px;
-    text-align: center;
-  }
+.btn-wrapper p {
+  margin: 10px 0;
+}
+.message-wrapper {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 80px;
+  text-align: center;
+}
 
-   .message {
-    padding: 15px 40px;
-    background-image: linear-gradient(rgb(89, 89, 134),black);
-    cursor: pointer;
-    box-shadow: 0 7px rgb(89, 89, 134);
-  }
+ .message {
+  padding: 15px 40px;
+  background-image: linear-gradient(rgb(89, 89, 134),black);
+  cursor: pointer;
+  box-shadow: 0 7px rgb(89, 89, 134);
+}
 
-  .message:active {
-    position: relative;
-    top: 7px;
-    box-shadow: none;
-  }
+.message:active {
+  position: relative;
+  top: 7px;
+  box-shadow: none;
+}
 
-  .wrapper{
-    display: flex;
-  }
+.wrapper{
+  display: flex;
+}
 
-  .wrapper .dynamic-txts{
-    margin-left: 15px;
-    height: 90px;
-    line-height: 90px;
-    overflow: hidden;
-  }
-  .dynamic-txts li{
-    list-style: none;
-    color: #05156d;
-    font-size: 55px;
-    font-weight: 500;
-    position: relative;
-    top: 0;
-    animation: slide 12s steps(4) infinite;
-  }
+.wrapper .dynamic-txts{
+  margin-left: 15px;
+  height: 90px;
+  line-height: 90px;
+  overflow: hidden;
+}
+.dynamic-txts li{
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  list-style: none;
+  color: #c9d1fdd8;
+  font-size: 55px;
+  font-weight: 500;
+  position: relative;
+  top: 0;
+  animation: slide 20s steps(4) infinite;
+}
+
+.dynamic-txts li span{
+  text-align: center;
+  color: #c9d1fdd8;
+  width: 0;
+  overflow: hidden;
+  white-space: no-wrap;
+  display:block;
+  border-right: 3px solid #000000;
+  animation: typewriter 5s steps(10) infinite, blinking-cursor 0.9s infinite;
+  animation-fill-mode: forwards}
+
+
   @keyframes slide {
     100%{
       top: -360px;
     }
   }
-  .dynamic-txts li span{
-    position: relative;
-    margin: 5px 0;
-    line-height: 90px;
-  }
-  .dynamic-txts li span::after{
-    content: "";
-    position: absolute;
-    left: 0;
-    height: 200px;
-    width: 100%;
-    background-color:rgba(204,214,216,255);
-    animation: typing 3s steps(17) infinite;
-  }
-  @keyframes typing {
-    40%, 60%{
-      left: calc(100% + 30px);
-    }
-    100%{
-      left: 0;
-    }
-  }
+@keyframes typewriter {
+  0% { width:0 }
+  25% { width: 70% }
+  48% { width: 100% }
+  50% { width: 100% }
+  55% { width: 100% }
+  75% { width: 70%; }
+  85% { width: 30%; }
+  100% { width: 0; }
+}
+
+@keyframes blinking-cursor {
+  from { border-color: transparent }
+  to { border-color: #e7e7e7a6 }
+}
+.card {
+  box-shadow: rgba(143, 143, 143, 0.705) 2px 4px 10px;
+  max-width: 475px;
+  margin: auto;
+  text-align: center;
+  border-radius: 10px 10px 10px 10px;
+  height:500px;
+  position:relative;
+  top:0;
+  transition: top ease 0.5s;
+  filter:brightness(95%);
+  padding: 10px 0 0 0;
+}
+.textbox{
+  padding: 0 50px 20px 50px ;
+}
+.card h1{
+  font-size: 20px;
+}
+.card:hover{
+  top:-10px;
+  filter: brightness(100%);
+  transition:all 200ms;
+  opacity: 1;
+}
+.card p{
+  line-height: 25px
+}
+.abkanmani{
+
+    color: rgb(73, 73, 73);
+    font-size: 18px;
+    line-height: 40px;
+}
+
+
+.title {
+  font-weight: bold;
+  color: rgb(73, 73, 73);
+  font-size: 17px;
+  line-height: 25px;
+}
+
+.top-wrappers,.section button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 0 0 10px 10px;
+}
+
+.bot-wrappers
+{
+  height:900px;
+}
+
+.top-wrappers
+{
+  height:900px;
+}
+.top-wrappers a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+.top-wrappers, .section button:hover, a:hover {
+  opacity: 0.7;
+}
+
+.top-wrappers h1
+{
+  font-size: 20px;
+}
+
+.fade-in
+{
+  opacity:0;
+  transition: opacity 200ms ease-in;
+}
+
+.fade-in.appear
+{
+  opacity:1;
+}
+
+.top-wrappers li{
+
+  margin-top:50px;
+  margin-bottom: 50px;
+  float:left;
+}
+
+div.fade-in{
+  float:left;
+  margin-right:100px;
+}
+
+.top-wrappers h2{
+  font-size:40px;
+  text-align: center;
+}
+
+.bot-wrappers h2{
+  font-size:40px;
+  text-align:center;
+}
+
+#myBtn {
+  display: none;
+  position: fixed; 
+  bottom: 20px; 
+  right: 30px;
+  z-index: 99; 
+  border: none; 
+  outline: none; 
+  background-image: linear-gradient(rgb(89, 89, 134),black);
+  color: white;
+  cursor: pointer; 
+  padding: 15px; 
+  border-radius: 10px 10px 10px 10px; 
+  font-size: 18px; 
+  box-shadow: 0 7px rgb(89, 89, 134);
+  opacity: 0.5;
+}
+
+#myBtn:hover {
+  background-image: linear-gradient(black,rgb(89, 89, 134));
+  box-shadow: 0 7px black;
+  opacity: 0.9;
+}
+.ss{
+  margin: 10px 10px 10px 10px;
+  border: 5px solid #7289da94;
+  border-radius: 30px;
+  padding: 10px 20px 10px 20px;
+  opacity: 0.7;
+  transition: 0.5s;
+}
+.ss h1{
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(191, 225, 255);
+}
+.ss:hover{
+  opacity:0.9;
+  transition: all 0.4s ease-in;
+}
