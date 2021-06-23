@@ -7,7 +7,7 @@ body{
   margin: 0;
   font-family: "Verdana";
   background-color: rgba(255, 255, 255, 0);
-  background-image: url('discoo.png');
+  background-image: url('./images/discoo.png');
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -41,7 +41,7 @@ height: 1000px;
 }
 
 .top-wrapper{
-  background-image: url("discordblur.png");
+  background-image: url("./images/discordblur.png");
   opacity: 1.0;
   padding: 60px 100px 30px 100px;
   margin: 0px;
@@ -54,7 +54,7 @@ height: 1000px;
 .top-wrapper:hover{
   transition: all 0.5s ease-in-out;
   color:rgb(0, 0, 0);
-  background-image: url("discord-bots.png");
+  background-image: url("./images/discord-bots.png");
   text-shadow: 2px 2px 5px aliceblue; 
 }
 
