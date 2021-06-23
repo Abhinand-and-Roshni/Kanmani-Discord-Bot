@@ -5,7 +5,7 @@ Kanmani also can fetch memes, motivational quotes, coding tips and productivity 
 
 # Technologies Used
 
-Kanmani was implemented using Python . We made use of the discord API. Discord.py allowed us to incorporate the functions we wanteed to. We hosted our website on replit and used Uptime Robot to host the bot.
+Kanmani was implemented using Python . We made use of the discord API. Discord.py allowed us to incorporate the functions we wanted to. We hosted our website on replit and used Uptime Robot to host the bot.
 We also made use of the Reddit API to fetch posts from popular subreddits. We randomised the fetching of posts for new posts at every command.
 
 # Screenshots of Website 
