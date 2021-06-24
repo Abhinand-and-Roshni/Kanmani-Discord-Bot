@@ -1,12 +1,14 @@
 #FINAL KANMANI BOT
 import discord
-from discord.ext import commands, tasks
-from discord.utils import get
-import praw
 import asyncio
 import random
+import praw
+from discord.ext import commands, tasks
+from discord.utils import get
 from kanmani_alive import kanmani_alive
 
+
+commandinfo = "Here are a list of commands you can try!\n\n\n`!!pomo` : Pomodoro is a productivity technique which helps you focus. It involves following 25 minutes of work followed by a 5 minute refreshing break. Try the pomodoro technique using this command.\n\n`!!vent` : Want to vent but don't know to whom? Vent in my dm and I'll post it to the venting channel anonymously so you can get it off your chest!\n\n`!!reminder` : Remind yourself using this command! Write the duration after which you want to be reminder with the first letter of the timeperiod and follow it up with what you want to be reminded about.\nHere is an example : `!!reminder 15m Get Dinner!`\n  seconds: s  |  minutes: m  |  hours: h  |  days:day  \n\n`!!meme` : Want to laugh a bit? Try it out.\n\n`!!coding` : Want some cool coding tips to enhance your knowledge? Try this out!\n\n`!!motivate` : Are you in need for some inspiring words haha. This command gives you some of that plus some more.\n\n`!!study` : Your study motivation posted by strangers!\n\n"
 #EMOJI TO USE
 shh_emoji = '\U0001F910' #be quiet emoji
 book_emoji= "\U0001F4DA" #stack of books emoji
@@ -31,7 +33,7 @@ exclamation_em = "\U0000203C" #double !!
 client = commands.Bot(command_prefix='!!')
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Game('!!ok kanmani'))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game('ok !!kanmani'))
     print(' {0.user} is here!'.format(client))
 
 #KEYWORDS AND BOT LISTENING
@@ -44,21 +46,20 @@ async def on_message(message):
     await message.channel.send('Hello, ' + message.author.mention +' '+ heart_emoji + ' !')
   if message.content.startswith('!!thank'):
     await message.channel.send("You're welcome " + message.author.mention + '! ' + heart_emoji)
-  if message.content.startswith('!!ok kanmani'):
-    await message.channel.send(f"Hi {message.author.mention}! I'm a bot designed by students for students! From productivity to chilling - Kanmani's got your back.\n\n Do you want to know what I can do? Try the **!!info** command!\n Have a good day!")
+
 
 #Reminders 
-@client.command(case_insensitive = True, aliases = ["remind", "remindme", "remind_me"])
+@client.command(case_insensitive = True, aliases = ["remind", "remindme", "Reminder", "Remind", "remainder"])
 @commands.bot_has_permissions(attach_files = True, embed_links = True)
 async def reminder(ctx, time, *, reminder):
     print(time)
     print(reminder)
     user = ctx.message.author
     rem_em = discord.Embed(title = "Reminder!", description = reminder, colour=random.randint(0, 0xffffff))
-    rem_em.set_footer(text="Kanmani | Be mindful | !!ok kanmani ", icon_url=f"{client.user.avatar_url}")
+    rem_em.set_footer(text="Kanmani | Be mindful | !!kanmani ", icon_url=f"{client.user.avatar_url}")
     seconds = 0
     if reminder is None:
-        rem_em.add_field(name='Warning', value='Please specify what do you want me to remind you about.') # Error message
+        rem_em.add_field(name='!!Warning!!', value='Please specify what do you want me to remind you about.') # Error message
     if time.lower().endswith("d"):
         seconds += int(time[:-1]) * 60 * 60 * 24
         counter = f"{seconds // 60 // 60 // 24} days"
@@ -72,13 +73,11 @@ async def reminder(ctx, time, *, reminder):
         seconds += int(time[:-1])
         counter = f"{seconds} seconds"
     if seconds == 0:
-        rem_em.add_field(name='Warning',
-                        value='Specify a proper duration. \n Example: `!!reminder 15m Get the groceries from the car!`')
+        rem_em.add_field(name='!!Warning!!', value='Specify a proper duration. \n Example: `!!reminder 15m Get the groceries from the car!`')
     elif seconds < 10:
-        rem_em.add_field(name='Warning',
-                        value='You need a reminder for that time period? The minimum time is 5 mins for a reminder. Try again  \n Example: `!!reminder 15m Get the groceries from the car!`')
+        rem_em.add_field(name='!!Warning!!',value='You need a reminder for that time period? The minimum time is 5 mins for a reminder. Try again  \n Example: `!!reminder 15m Get the groceries from the car!`')
     elif seconds > 172800:
-        rem_em.add_field(name='Warning', value='That duration is too long!\nMaximum duration is 2 days.')
+        rem_em.add_field(name='!!Warning!!', value='That duration is too long!\nMaximum duration is 2 days.')
     else:
         await ctx.send(f"{ctx.author.mention}, I will remind you regarding  `{reminder}` in {counter}. Have a great day!")
         await asyncio.sleep(seconds)
@@ -90,7 +89,7 @@ async def reminder(ctx, time, *, reminder):
         await em_reminder.add_reaction(heart_emoji)
         return
     await ctx.send(embed=rem_em)
-    
+
 #POMODORO TECHNIQUE
 @client.command()
 async def pomo(ctx):
@@ -106,7 +105,7 @@ async def pomo(ctx):
   await pomo_start.add_reaction(partypop_emoji)
   await pomo_start.add_reaction(shh_emoji) 
   await pomo_start.add_reaction(book_emoji)
-  await asyncio.sleep(20*60)
+  await asyncio.sleep(1)
   await ctx.send(ctx.author.mention)
   em_pomo_break = discord.Embed(
     title='Congratulations!',
@@ -119,7 +118,7 @@ async def pomo(ctx):
   await pomo_break.add_reaction(clap_emoji) 
   await pomo_break.add_reaction(partypop_emoji)
   await pomo_break.add_reaction(star_struck)
-  await asyncio.sleep(5*60)
+  await asyncio.sleep(1)
   await ctx.send(ctx.author.mention)
   em_pomo_bye = discord.Embed(
     title='Well Done!',
@@ -133,7 +132,7 @@ async def pomo(ctx):
   await pomo_bye.add_reaction(handwave_emoji)
 
 #WATER REMINDERS
-@tasks.loop(hours = 2.43)
+@tasks.loop(hours = 2.1)
 async def water_rem():
   message_channel = client.get_channel(854294448439951411) #CHANNEL ID GOES HERE
   print(f"Got channel {message_channel}")
@@ -144,7 +143,7 @@ async def water_rem():
     color = discord.Colour.blue()
     )
   remindermsg.set_thumbnail(url="https://image.shutterstock.com/image-vector/hand-drawn-doodle-style-cartoon-260nw-1170555406.jpg")
-  remindermsg.add_field(name ="If you need me just call me.", value = '!!ok kanmani', inline = True )
+  remindermsg.add_field(name ="If you need me just call me.", value = '!!kanmani', inline = True )
 
   em_rem_msg = await message_channel.send(embed = remindermsg)
   for i in range(20):
@@ -154,7 +153,7 @@ async def water_rem():
       colour=random.randint(0, 0xffffff)
     )
     em_rem_edit.set_thumbnail(url="https://image.shutterstock.com/image-vector/hand-drawn-doodle-style-cartoon-260nw-1170555406.jpg")
-    em_rem_edit.add_field(name ="If you need me just call me.", value = '!!ok kanmani', inline = True )
+    em_rem_edit.add_field(name ="If you need me just call me.", value = '!!kanmani', inline = True )
     await asyncio.sleep(0.01)
     await em_rem_msg.edit(embed = em_rem_edit)
   await em_rem_msg.add_reaction(water_emoji)
@@ -168,7 +167,7 @@ async def before():
   print("Finished wait.")
 
 
-#ADMIN CLEAR MSG 
+#ADMIN CLEAR MSG
 @client.command()
 @commands.has_permissions(administrator=True)
 async def clearit(ctx, amount=2):
@@ -176,6 +175,21 @@ async def clearit(ctx, amount=2):
   await ctx.send('Messages have been deleted!')
   await asyncio.sleep(1.25)
   await ctx.channel.purge(limit = 1)
+
+#Kanmani commands
+@client.command(pass_context = True, aliases = [ "Inf", "infor", "information", "Info", "commandss", "comands"])
+async def info(ctx):
+  em_com = discord.Embed(
+    title = "Kanmani's Ability",
+    description = commandinfo,
+    colour=random.randint(0, 0xffffff)
+  )
+  em_com.set_footer(text = "Kanmani | Be mindful | !!kanmani", icon_url=f"{client.user.avatar_url}")
+  react_com= await ctx.send(embed = em_com)
+  await react_com.add_reaction(clap_emoji)
+  await react_com.add_reaction(star_struck)
+
+
 
 #VENTING FEATURE
 @client.command(name='vent')
@@ -314,11 +328,34 @@ async def study(ctx):
   await quotes_msg.add_reaction(tick_emoji)
   await quotes_msg.add_reaction(laptop_emoji)
 
+#ok kanmani
+@client.command(pass_context = True, aliases = ["Kanmani", "kanmanii kamani", "Kanmanii"])
+async def kanmani(ctx):
+  em_ok = discord.Embed(title = "Kanmani", description = f"**Your Wellness and Productivity Bot**\n\nHi {ctx.author.mention}! I'm a bot designed by students for students! From productivity to chilling - Kanmani's got your back.\n\nDo you want to know what I can do? Try the `!!info` command!\nHave a good day!", color = random.randint(0,0xffffff))
+  em_ok.set_thumbnail(url = ctx.author.avatar_url_as(format = "png"))
+  em_ok.set_footer(text = "Kanmani | Be mindful | !!kanmani", icon_url=f"{client.user.avatar_url}")
+  msg_em_ok = await ctx.send(embed = em_ok)
+  await msg_em_ok.add_reaction(clap_emoji)
+  await msg_em_ok.add_reaction(heart_emoji)
+
+
+
+
+
+
+
+
+
+
+
+
+
 #REST YOUR EYES
 @tasks.loop(hours = 3)
 async def eyes_relax():
   message_channel = client.get_channel(854294448439951411) #CHANNEL ID GOES HERE
   print(f"Got channel {message_channel}")
+  await asyncio.sleep(504)
   await message_channel.send('Hi @everyone! Time to rest your vision providers')
   eyesmsg = discord.Embed(
     title='Rest your eyes!',
@@ -347,8 +384,11 @@ async def before_eyes():
   await client.wait_until_ready()
   print("Finished wait.")
 
-#STUFF FOR RUNNING THE BOT WITH THE FUNCTIONS
+
+#######STUFF FOR RUNNING THE BOT WITH THE FUNCTIONS##############
+
 eyes_relax.start()
 water_rem.start()
+kanmani_alive()
 #RUNNING THE BOT
-client.run('') #TOKEN
+client.run('#') #Token goes here
