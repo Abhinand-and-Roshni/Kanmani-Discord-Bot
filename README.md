@@ -5,8 +5,12 @@ Kanmani also can fetch memes, motivational quotes, coding tips and productivity 
 
 # Technologies Used
 
+<img width="340" alt="Screenshot 2021-06-24 at 9 23 26 PM" src="https://user-images.githubusercontent.com/81344251/123294386-6b499e80-d532-11eb-8fd7-f2e69968297a.png"> <img width="358" alt="Screenshot 2021-06-24 at 9 23 52 PM" src="https://user-images.githubusercontent.com/81344251/123294449-7b617e00-d532-11eb-82a6-81a5c7bcd63c.png">  <img width="311" alt="Screenshot 2021-06-24 at 9 24 56 PM" src="https://user-images.githubusercontent.com/81344251/123294601-a055f100-d532-11eb-8c9b-1812b9548330.png"> 
+
+
+
 Kanmani was implemented using Python . We made use of the discord API. Discord.py allowed us to incorporate the functions we wanted to. We hosted our website on replit and used Uptime Robot to host the bot.
-We also made use of the Reddit API to fetch posts from popular subreddits. We randomised the fetching of posts for new posts at every command.
+We also made use of the Reddit API to fetch posts from popular subreddits. We also used FireBase for the backend.
 
 # Screenshots of the Website 
 ![image](https://user-images.githubusercontent.com/81344251/123160009-5108b580-d48b-11eb-8f18-287abf27afa5.png)
