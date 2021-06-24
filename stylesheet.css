@@ -232,6 +232,23 @@ footer {
   to { border-color: #e7e7e7a6 }
 }
 
+.feedback{
+  box-shadow: rgba(143, 143, 143, 0.705) 2px 4px 10px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  border-radius: 10px 10px 10px 10px;
+  position:relative;
+  top:0;
+  transition: top ease 0.5s;
+  filter:brightness(95%);
+  padding: 10px 30px 20px 30px;
+  line-height: 30px;
+}
+
+
 .card {
   box-shadow: rgba(143, 143, 143, 0.705) 2px 4px 10px;
   max-width: 425px;
@@ -259,11 +276,9 @@ footer {
   transition:all 200ms;
   opacity: 1;
 }
-
 .card p{
   line-height: 25px
 }
-
 .abkanmani{
 
     color: rgb(73, 73, 73);
@@ -271,11 +286,21 @@ footer {
     line-height: 40px;
 }
 
+
 .title {
   font-weight: bold;
   color: rgb(73, 73, 73);
   font-size: 15px;
   line-height: 23px;
+}
+input[type=text],input[type=email], select {
+  width: 90%;
+  padding: 15px 30px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .top-wrappers,.section button {
@@ -290,6 +315,7 @@ footer {
   width: 100%;
   font-size: 18px;
   border-radius: 0 0 10px 10px;
+  
 }
 
 .bot-wrappers
@@ -388,5 +414,4 @@ div.fade-in{
 .ss:hover{
   opacity:0.9;
   transition: all 0.4s ease-in;
-  box-shadow: 1px 1px 2px white, 0 0 25px white, 0 0 5px white;
 }
