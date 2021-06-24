@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanmani Discord Bot</title>
@@ -14,6 +16,7 @@
       </div>
      
       <div class ="header-right">
+        <a href = "#contactForm">Contact</a>
         <a href = "#scrnsht">Show Me!</a>
         <a href = "#abo">About Kanmani</a>
         <a href = "#devs">About Us</a>
@@ -101,6 +104,42 @@
           <img src = "./images/pomokan.png"style = "margin: 10px 10px 5px 10px; width : 32%;">
           <img src = "./images/memekan.png"style = "margin: 10px 10px 5px 10px; width : 26%;">
       </div>
+
+      <form class="container" id="contactForm">
+<div class = "section" id = "Suggest">
+        <div class="feedback" style = "background-color: rgb(157, 164, 230);">
+          <h3>Do you have any suggestions for Kanmani?</h3>
+          <h3>Contact Form</h3>
+            <div class="form-group">
+                <label for="Suggest">
+                    Name: 
+                </label>
+                <input type="text" class="form-control" id="name" placeholder="name" required>
+            </div>
+  
+            <div class="form-group">
+                <label for="Suggest">
+                    Email address: 
+                </label>
+                  
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="Suggest">
+                  Suggestions: 
+              </label>
+                
+              <input type="text" class="form-control" id="suggestion" placeholder="..." required>
+             <br>
+          </div>
+          <button type="submit"
+          style="width: 90%;margin-top: 20px; background-color: #7289daa8; color: black; border-radius: 10px 10px 10px 10px;">
+          Submit!
+      </button>
+        </div>    
+        </div>     
+    </div>
+  </form>
       <footer>
         <div class="container">
           <p>Developed by Abhinand G and Roshni Balasubramanian | June 2021</p>
@@ -151,6 +190,57 @@ function topFunction() {
 }
       </script>
 
+<script src=
+"https://www.gstatic.com/firebasejs/3.7.4/firebase.js">
+</script>
 
+<script>
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyB9I0795Euulsjcp19TXPui-9uC6yHDdoc",
+  authDomain: "kanmanibot-3363d.firebaseapp.com",
+  databaseURL: "https://kanmanibot-3363d-default-rtdb.firebaseio.com",
+  projectId: "kanmanibot-3363d",
+  storageBucket: "kanmanibot-3363d.appspot.com",
+  messagingSenderId: "158239341209",
+  appId: "1:158239341209:web:90e4422f21e79d3570d608",
+  measurementId: "G-H1V3DRRNZP"
+};
+
+  firebase.initializeApp(firebaseConfig);
+
+  var messagesRef = firebase.database()
+      .ref('Collected Data');
+    
+  document.getElementById('contactForm')
+      .addEventListener('submit', submitForm);
+
+  function submitForm(e) {
+      e.preventDefault();
+
+      // Get values
+      var name = getInputVal('name');
+      var email = getInputVal('email');
+      var suggestion = getInputVal('suggestion')
+
+      saveMessage(name, email, suggestion);
+      document.getElementById('contactForm').reset();
+  }
+
+  // Function to get get form values
+  function getInputVal(id) {
+      return document.getElementById(id).value;
+  }
+
+  // Save message to firebase
+  function saveMessage(name, email, suggestion) {
+      var newMessageRef = messagesRef.push();
+      newMessageRef.set({
+          name: name,
+          email: email,
+          suggestion: suggestion,
+      });
+  }
+</script>
   </body>
 </html>
