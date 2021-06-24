@@ -23,7 +23,6 @@ We also made use of the Reddit API to fetch posts from popular subreddits. We al
 
 ![image](https://user-images.githubusercontent.com/81344251/123160153-75fd2880-d48b-11eb-94b3-eb4f5e4158f0.png)
 
-![image](https://user-images.githubusercontent.com/81344251/123160219-8b725280-d48b-11eb-878f-da81a9642de0.png)
 
 
 
