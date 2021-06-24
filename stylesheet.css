@@ -231,6 +231,7 @@ footer {
   from { border-color: transparent }
   to { border-color: #e7e7e7a6 }
 }
+
 .card {
   box-shadow: rgba(143, 143, 143, 0.705) 2px 4px 10px;
   max-width: 425px;
@@ -258,16 +259,17 @@ footer {
   transition:all 200ms;
   opacity: 1;
 }
+
 .card p{
   line-height: 25px
 }
+
 .abkanmani{
 
     color: rgb(73, 73, 73);
     font-size: 18px;
     line-height: 40px;
 }
-
 
 .title {
   font-weight: bold;
