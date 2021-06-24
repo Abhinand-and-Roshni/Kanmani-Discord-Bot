@@ -105,7 +105,7 @@ async def pomo(ctx):
   await pomo_start.add_reaction(partypop_emoji)
   await pomo_start.add_reaction(shh_emoji) 
   await pomo_start.add_reaction(book_emoji)
-  await asyncio.sleep(1)
+  await asyncio.sleep(1500)
   await ctx.send(ctx.author.mention)
   em_pomo_break = discord.Embed(
     title='Congratulations!',
@@ -118,7 +118,7 @@ async def pomo(ctx):
   await pomo_break.add_reaction(clap_emoji) 
   await pomo_break.add_reaction(partypop_emoji)
   await pomo_break.add_reaction(star_struck)
-  await asyncio.sleep(1)
+  await asyncio.sleep(300)
   await ctx.send(ctx.author.mention)
   em_pomo_bye = discord.Embed(
     title='Well Done!',
@@ -189,8 +189,6 @@ async def info(ctx):
   await react_com.add_reaction(clap_emoji)
   await react_com.add_reaction(star_struck)
 
-
-
 #VENTING FEATURE
 @client.command(name='vent')
 async def vent(ctx):
@@ -241,7 +239,7 @@ async def vent(ctx):
 #coding tips subreddit#
 @client.command()
 async def coding(ctx):
-  reddit = praw.Reddit(client_id = 'M9RzCP9qFbpWDQ', client_secret = 'm7kK9grNlNa0DRsNjGOqEEEXdEm_9g', user_agent = 'try-all')
+  reddit = praw.Reddit(client_id = '#', client_secret = '#', user_agent = 'try-all')
   code_sub = reddit.subreddit('LearnProgramming').top()
   post_to_pick = random.randint(1, 100)
   for x in range(0, post_to_pick):
@@ -337,17 +335,6 @@ async def kanmani(ctx):
   msg_em_ok = await ctx.send(embed = em_ok)
   await msg_em_ok.add_reaction(clap_emoji)
   await msg_em_ok.add_reaction(heart_emoji)
-
-
-
-
-
-
-
-
-
-
-
 
 
 #REST YOUR EYES
