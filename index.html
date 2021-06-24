@@ -132,7 +132,7 @@
               <input type="text" class="form-control" id="suggestion" placeholder="..." required>
              <br>
           </div>
-          <button type="submit"
+          <button type="submit" onsubmit="submitfunc()"
           style="width: 90%;margin-top: 20px; background-color: #7289daa8; color: black; border-radius: 10px 10px 10px 10px;">
           Submit!
       </button>
@@ -225,7 +225,12 @@ const firebaseConfig = {
 
       saveMessage(name, email, suggestion);
       document.getElementById('contactForm').reset();
-      window.alert('Thank you for your suggestion!');
+     
+  }
+  
+  function submitfunc()
+  {
+    window.alert('Thank you for your suggestion!');
   }
 
   // Function to get get form values
