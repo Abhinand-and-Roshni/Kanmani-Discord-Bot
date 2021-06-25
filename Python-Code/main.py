@@ -13,7 +13,7 @@ try:
     print(f"Rate limit {int(r.headers['Retry-After']) / 60} minutes left")
 except:
     print("No rate limit")
-commandinfo = "Here are a list of commands you can try!\n\n\n`!!health` : Start your health reminder clock for reminders every few hours for a day.\n\n`!!pomo` : Pomodoro is a productivity technique which helps you focus. It involves following 25 minutes of work followed by a 5 minute refreshing break. Try the pomodoro technique using this command.\n\n`!!ventinfo` : Want to vent but don't know to whom? Vent in my dm and I'll post it to the venting channel anonymously so you can get it off your chest! Learn how to set this feature up!\n\n`!!reminder` : Remind yourself using this command! Write the duration after which you want to be reminder with the first letter of the timeperiod and follow it up with what you want to be reminded about.\nHere is an example : `!!reminder 15m Get Dinner!`\n  seconds: s  |  minutes: m  |  hours: h  |  days:day  \n\n`!!meme` : Want to laugh a bit? Try it out.\n\n`!!coding` : Want some cool coding tips to enhance your knowledge? Try this out!\n\n`!!motivate` : Are you in need for some inspiring words haha. This command gives you some of that plus some more.\n\n`!!study` : Your study motivation posted by strangers!\n\n"
+commandinfo = "Here are a list of commands you can try!\n\n\n`!!health` : Start your health reminder clock for reminders every few hours for a day.\n\n`!!pomo` : Pomodoro is a productivity technique which helps you focus. It involves following 25 minutes of work followed by a 5 minute refreshing break. Try the pomodoro technique using this command.\n\n`!!info_vent` : Want to vent but don't know to whom? Vent in my dm and I'll post it to the venting channel anonymously so you can get it off your chest! Learn how to set this feature up!\n\n`!!reminder` : Remind yourself using this command! Write the duration after which you want to be reminder with the first letter of the timeperiod and follow it up with what you want to be reminded about.\nHere is an example : `!!reminder 15m Get Dinner!`\n  seconds: s  |  minutes: m  |  hours: h  |  days:day  \n\n`!!meme` : Want to laugh a bit? Try it out.\n\n`!!coding` : Want some cool coding tips to enhance your knowledge? Try this out!\n\n`!!motivate` : Are you in need for some inspiring words haha. This command gives you some of that plus some more.\n\n`!!study` : Your study motivation posted by strangers!\n\n"
 #EMOJI TO USE
 shh_emoji = '\U0001F910' #be quiet emoji
 book_emoji= "\U0001F4DA" #stack of books emoji
@@ -55,7 +55,7 @@ async def on_message(message):
   if message.content.startswith('!!thank'):
     await message.channel.send("You're welcome " + message.author.mention + '! ' + heart_emoji)
 
-reddit = praw.Reddit(client_id = '#', client_secret = '#', user_agent = '#')
+
 #Reminders 
 @client.command(case_insensitive = True, aliases = ["remind", "remindme", "Reminder", "Remind", "remainder"])
 @commands.bot_has_permissions(attach_files = True, embed_links = True)
@@ -195,68 +195,36 @@ async def info(ctx):
 
 #Vent info
 @client.command()
-async def ventinfo(ctx):
+async def info_vent(ctx):
   await ctx.send(ctx.author.mention)
   em_vents = discord.Embed(
     title='How does Kanmani Venting Feature work?',
-    description = "Create a channel called `venting-channel`. Go to @Kanmani 's dm and type `!!vent`. After you get your guidelines message from Kanmani, you can start venting! It will automatically be posted on `#venting-channel`.\n\nHave fun! Remember to be respectful!", 
+    description = "Type out `!!vent` in a channel along with your vents and your vent will be posted anonymously.\n*Make sure the administrator of the server grants admin privelages to Kanmani for the venting technique to work!*\n\nExample: `!!vent: Today was rough, but my friends and I got to hangout!!`", 
     color=random.randint(0,0xffffff)
     )
   em_vents.set_footer(text="Kanmani | Be mindful | !!kanmani ", icon_url=f"{client.user.avatar_url}")
   vent_re = await ctx.send(embed = em_vents)
   await vent_re.add_reaction(partypop_emoji)
 
-#VENTING FEATURE
-@client.command(name='vent')
-async def vent(ctx):
-  if ctx.channel.type==discord.ChannelType.private:
-    mbed=discord.Embed(
-      title='Vent out your feelings!',
-      description='** Note: Any slur will not be tolerated by us. ** ',
-      color=random.randint(0,0xffffff)
-    )
-    mbed.set_thumbnail(url='https://cdn.discordapp.com/attachments/854294448439951411/855083404953518100/3a71df84c3736bbe8c548751ba057f59.png')
-    demand=await ctx.send(embed=mbed)
-    try:
-      msg=await client.wait_for(
-        'message',
-        timeout=1000,
-        check=lambda message: message.author == ctx.author and message.channel==ctx.channel
-      )
-      if msg:
-        channel=get(client.get_all_channels(), guild__name='Kanmani',name='venting-channel')
-        mbed=discord.Embed(
-          title='New Vent',
-          description=f'{msg.content}',
-          colour=random.randint(0, 0xffffff)
-        )
-        mbed.set_footer(text = "Kanmani | Be mindful | !!kanmani", icon_url=f"{client.user.avatar_url}")
-        mbed.set_thumbnail(url='https://cdn.discordapp.com/attachments/854294448439951411/855083404953518100/3a71df84c3736bbe8c548751ba057f59.png')
-        abc=await channel.send(embed=mbed)
-        await abc.add_reaction(star_struck)
-        await abc.add_reaction(heart_emoji)
-        await abc.add_reaction(clap_emoji)
-        await abc.add_reaction(angry_emoji)
-        await demand.delete()
 
-    except asyncio.TimeoutError:
-      await ctx.send('You have not vented anything for way too long. Kanmani has to return now. Sorry!',delete_after=5)
-      await demand.delete()
 
-  else:
-    mm=discord.Embed(
-      title='Oops! Wrong chat',
-      description='Please use the `!!vent` command in my DM, and it will be anonymously posted in the venting channel!',
-      color=random.randint(0,0xffffff)
-    )
-    mm.set_thumbnail(url='https://cdn.discordapp.com/attachments/854294448439951411/855083404953518100/3a71df84c3736bbe8c548751ba057f59.png') 
-    await ctx.send(embed=mm)       
+#venting
+@client.event
+async def on_message(message):
+  if message.content.startswith('!!vent'):
+    await message.channel.purge(limit = 1)
+    mmb=discord.Embed(title='Here is a new vent!',
+    description=f'{message.content}',
+    color=discord.Color.blue())
+    mmb.set_thumbnail(url='https://cdn.discordapp.com/attachments/854281338269335562/857977383586889748/KanmaniSample.png')
+    await message.channel.send(embed=mmb)
+  await client.process_commands(message)
 
 #REDDIT: MOTIVATION, CODING AND PRODUCTIVITY
 #coding tips subreddit#
 @client.command()
 async def coding(ctx):
-
+  reddit = praw.Reddit(client_id = '#', client_secret = '#', user_agent = '#')
   code_sub = reddit.subreddit('LearnProgramming').top()
   post_to_pick = random.randint(1, 100)
   for x in range(0, post_to_pick):
@@ -278,7 +246,7 @@ async def coding(ctx):
 #motivation subreddit#
 @client.command()
 async def motivate(ctx):
-
+  reddit = praw.Reddit(client_id = '#', client_secret = '#', user_agent = '#')
   motiv_sub = reddit.subreddit('MotivationalPics').top()
   post_to_pick = random.randint(1, 100)
   for x in range(0, post_to_pick):
@@ -301,7 +269,7 @@ async def motivate(ctx):
 #meme reddit#
 @client.command()
 async def meme(ctx):
-
+  reddit = praw.Reddit(client_id = '#', client_secret = '#', user_agent = '#')
   memes_sub = reddit.subreddit('CollegeHomeworkTips').top()
   post_to_pick = random.randint(1, 100)
   for x in range(0, post_to_pick):
@@ -323,7 +291,7 @@ async def meme(ctx):
 #quotes subreddit#
 @client.command()
 async def study(ctx):
-
+  reddit = praw.Reddit(client_id = '#', client_secret = '#', user_agent = '#')
   quotes_sub = reddit.subreddit('QuotesPorn').top()
   post_to_pick = random.randint(1, 100)
   for x in range(0, post_to_pick):
@@ -357,4 +325,4 @@ async def kanmani(ctx):
 
 kanmani_alive()
 #RUNNING THE BOT
-client.run('#') #Token goes here
+client.run('#') 
