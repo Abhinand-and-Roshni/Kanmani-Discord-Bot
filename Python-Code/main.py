@@ -33,7 +33,7 @@ tick_emoji = "\U00002705" #tick mark/good/done
 X_emoji = "\U0000274C" #X mark/incomplete/bad
 crying_emoji = "\U0001F62D" #tears flooding down face
 exclamation_em = "\U0000203C" #double !!
-reddit = praw.Reddit(client_id = 'M9RzCP9qFbpWDQ', client_secret = 'm7kK9grNlNa0DRsNjGOqEEEXdEm_9g', user_agent = 'try-all')
+reddit = praw.Reddit(client_id = '#', client_secret = '#', user_agent = '#')
 #BOT LOGIN
 client = commands.Bot(command_prefix='!!')
 @client.event
@@ -213,7 +213,7 @@ async def info_vent(ctx):
   await ctx.send(ctx.author.mention)
   em_vents = discord.Embed(
     title='How does Kanmani Venting Feature work?',
-    description = "Type out `!!vent` in a channel along with your vents and your vent will be posted anonymously.\n*Make sure the administrator of the server grants admin privelages to Kanmani for the venting technique to work!*\n\nExample: `!!vent: Today was rough, but my friends and I got to hangout!!`", 
+    description = "Type out `!!vent` in a channel along with your vents and your vent will be posted anonymously.\n*Make sure the administrator of the server grants privelages to Kanmani for the venting technique to work! Venting Feature requires `manage messages` permission!*\n\nExample: `!!vent: Today was rough, but my friends and I got to hangout!!`", 
     color=random.randint(0,0xffffff)
     )
   em_vents.set_footer(text="Kanmani | Be mindful | !!kanmani ", icon_url=f"{client.user.avatar_url}")
