@@ -24,10 +24,17 @@ We also made use of the Reddit API to fetch posts from popular subreddits. We al
 ![image](https://user-images.githubusercontent.com/81344251/123160153-75fd2880-d48b-11eb-94b3-eb4f5e4158f0.png)
 
 
-Visit our site : https://abhinand-and-roshni.github.io/Kanmani-Discord-Bot
+
 
 # How to use Kanmani
-All the commands are ready to use. In order to use the venting feature, make sure you have a text-channel on your server called "venting_kan". This allows all your vents to be posted anonymously by Kanmani. To see the list of commands, enter !!kanmani onto your preferred text-channel. 
+All the commands are ready to use.
 
+In order to use the venting feature, make sure you have a text-channel on your server called "venting-channel". This allows all your vents to be posted anonymously by Kanmani. 
+Recieve your hourly health reminders by setting it up using the '!!health' command. 
+To see the list of commands, enter !!kanmani onto your preferred text-channel. 
+Now Kanmani is ready to use! Enjoy. 
 
+# Visit our Website 
+
+Visit our site : https://abhinand-and-roshni.github.io/Kanmani-Discord-Bot
 
