@@ -12,6 +12,11 @@ Kanmani also can fetch memes, motivational quotes, coding tips and productivity 
 Kanmani was implemented using Python . We made use of the discord API. Discord.py allowed us to incorporate the functions we wanted to. We hosted our website on replit and used Uptime Robot to host the bot.
 We also made use of the Reddit API to fetch posts from popular subreddits. We also used FireBase for the backend.
 
+# Visit our Website 
+
+Check out our website for the bot link.
+Visit our site : https://abhinand-and-roshni.github.io/Kanmani-Discord-Bot
+
 # Screenshots of the Website 
 ![image](https://user-images.githubusercontent.com/81344251/123160009-5108b580-d48b-11eb-8f18-287abf27afa5.png)
 
@@ -29,12 +34,9 @@ We also made use of the Reddit API to fetch posts from popular subreddits. We al
 # How to use Kanmani
 All the commands are ready to use.
 
-In order to use the venting feature, make sure you have a text-channel on your server called "venting-channel". This allows all your vents to be posted anonymously by Kanmani. 
-Recieve your hourly health reminders by setting it up using the '!!health' command. 
-To see the list of commands, enter !!kanmani onto your preferred text-channel. 
+To see the list of commands, enter !!info onto your preferred text-channel. 
+!!kanmani is the master command that leads you to all other commands!
 Now Kanmani is ready to use! Enjoy. 
 
-# Visit our Website 
 
-Visit our site : https://abhinand-and-roshni.github.io/Kanmani-Discord-Bot
 
