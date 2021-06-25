@@ -33,7 +33,7 @@ tick_emoji = "\U00002705" #tick mark/good/done
 X_emoji = "\U0000274C" #X mark/incomplete/bad
 crying_emoji = "\U0001F62D" #tears flooding down face
 exclamation_em = "\U0000203C" #double !!
-
+reddit = praw.Reddit(client_id = '#', client_secret = '#', user_agent = '#') #reddit dev details go here
 #BOT LOGIN
 client = commands.Bot(command_prefix='!!')
 @client.event
@@ -54,6 +54,14 @@ async def on_message(message):
     await message.channel.send('Hello, ' + message.author.mention +' '+ heart_emoji + ' !')
   if message.content.startswith('!!thank'):
     await message.channel.send("You're welcome " + message.author.mention + '! ' + heart_emoji)
+  if message.content.startswith('!!vent'):
+    await message.channel.purge(limit = 1)
+    mmb=discord.Embed(title='Here is a new vent!',
+    description=f'{message.content}',
+    color=discord.Color.blue())
+    mmb.set_thumbnail(url='https://cdn.discordapp.com/attachments/854281338269335562/857977383586889748/KanmaniSample.png')
+    await message.channel.send(embed=mmb)
+    await client.process_commands(message) 
 
 
 #Reminders 
@@ -208,23 +216,11 @@ async def info_vent(ctx):
 
 
 
-#venting
-@client.event
-async def on_message(message):
-  if message.content.startswith('!!vent'):
-    await message.channel.purge(limit = 1)
-    mmb=discord.Embed(title='Here is a new vent!',
-    description=f'{message.content}',
-    color=discord.Color.blue())
-    mmb.set_thumbnail(url='https://cdn.discordapp.com/attachments/854281338269335562/857977383586889748/KanmaniSample.png')
-    await message.channel.send(embed=mmb)
-  await client.process_commands(message)
-
 #REDDIT: MOTIVATION, CODING AND PRODUCTIVITY
 #coding tips subreddit#
 @client.command()
 async def coding(ctx):
-  reddit = praw.Reddit(client_id = '#', client_secret = '#', user_agent = '#')
+
   code_sub = reddit.subreddit('LearnProgramming').top()
   post_to_pick = random.randint(1, 100)
   for x in range(0, post_to_pick):
@@ -246,7 +242,7 @@ async def coding(ctx):
 #motivation subreddit#
 @client.command()
 async def motivate(ctx):
-  reddit = praw.Reddit(client_id = '#', client_secret = '#', user_agent = '#')
+
   motiv_sub = reddit.subreddit('MotivationalPics').top()
   post_to_pick = random.randint(1, 100)
   for x in range(0, post_to_pick):
@@ -269,7 +265,7 @@ async def motivate(ctx):
 #meme reddit#
 @client.command()
 async def meme(ctx):
-  reddit = praw.Reddit(client_id = '#', client_secret = '#', user_agent = '#')
+
   memes_sub = reddit.subreddit('CollegeHomeworkTips').top()
   post_to_pick = random.randint(1, 100)
   for x in range(0, post_to_pick):
@@ -291,7 +287,7 @@ async def meme(ctx):
 #quotes subreddit#
 @client.command()
 async def study(ctx):
-  reddit = praw.Reddit(client_id = '#', client_secret = '#', user_agent = '#')
+
   quotes_sub = reddit.subreddit('QuotesPorn').top()
   post_to_pick = random.randint(1, 100)
   for x in range(0, post_to_pick):
@@ -325,4 +321,4 @@ async def kanmani(ctx):
 
 kanmani_alive()
 #RUNNING THE BOT
-client.run('#') 
+client.run('#') #Token goes here
