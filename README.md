@@ -35,7 +35,8 @@ Visit our site : https://abhinand-and-roshni.github.io/Kanmani-Discord-Bot
 All the commands are ready to use.
 
 To see the list of commands, enter !!info onto your preferred text-channel. 
-!!kanmani is the master command that leads you to all other commands!
+!!kanmani is the master command that leads you to all other commands! Make sure that Kanmani is given administrator privileges (manage messages specifically).
+
 Now Kanmani is ready to use! Enjoy. 
 
 
