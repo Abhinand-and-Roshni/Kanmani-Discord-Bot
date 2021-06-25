@@ -13,7 +13,7 @@ try:
     print(f"Rate limit {int(r.headers['Retry-After']) / 60} minutes left")
 except:
     print("No rate limit")
-commandinfo = "Here are a list of commands you can try!\n\n\n`!!health` : Start your health reminder clock for reminders every few hours for a day.\n\n`!!pomo` : Pomodoro is a productivity technique which helps you focus. It involves following 25 minutes of work followed by a 5 minute refreshing break. Try the pomodoro technique using this command.\n\n`!!info_vent` : Want to vent but don't know to whom? Vent in my dm and I'll post it to the venting channel anonymously so you can get it off your chest! Learn how to set this feature up!\n\n`!!reminder` : Remind yourself using this command! Write the duration after which you want to be reminder with the first letter of the timeperiod and follow it up with what you want to be reminded about.\nHere is an example : `!!reminder 15m Get Dinner!`\n  seconds: s  |  minutes: m  |  hours: h  |  days:day  \n\n`!!meme` : Want to laugh a bit? Try it out.\n\n`!!coding` : Want some cool coding tips to enhance your knowledge? Try this out!\n\n`!!motivate` : Are you in need for some inspiring words haha. This command gives you some of that plus some more.\n\n`!!study` : Your study motivation posted by strangers!\n\n"
+commandinfo = "Here are a list of commands you can try!\n\n\n`!!health` : Start your health reminder clock for reminders every few hours for a day.\n\n`!!pomo` : Pomodoro is a productivity technique which helps you focus. It involves following 25 minutes of work followed by a 5 minute refreshing break. Try the pomodoro technique using this command.\n\n`!!info_vent` :  Want to vent but don't know to whom? Use this command to know how to use the anonymous venting feature.\n\n`!!reminder` : Remind yourself using this command! Write the duration after which you want to be reminder with the first letter of the timeperiod and follow it up with what you want to be reminded about.\nHere is an example : `!!reminder 15m Get Dinner!`\n  seconds: s  |  minutes: m  |  hours: h  |  days:day  \n\n`!!meme` : Want to laugh a bit? Try it out.\n\n`!!coding` : Want some cool coding tips to enhance your knowledge? Try this out!\n\n`!!motivate` : Are you in need for some inspiring words haha. This command gives you some of that plus some more.\n\n`!!study` : Your study motivation posted by strangers!\n\n"
 #EMOJI TO USE
 shh_emoji = '\U0001F910' #be quiet emoji
 book_emoji= "\U0001F4DA" #stack of books emoji
@@ -33,7 +33,7 @@ tick_emoji = "\U00002705" #tick mark/good/done
 X_emoji = "\U0000274C" #X mark/incomplete/bad
 crying_emoji = "\U0001F62D" #tears flooding down face
 exclamation_em = "\U0000203C" #double !!
-reddit = praw.Reddit(client_id = '#', client_secret = '#', user_agent = '#') #reddit dev details go here
+reddit = praw.Reddit(client_id = 'M9RzCP9qFbpWDQ', client_secret = 'm7kK9grNlNa0DRsNjGOqEEEXdEm_9g', user_agent = 'try-all')
 #BOT LOGIN
 client = commands.Bot(command_prefix='!!')
 @client.event
@@ -59,9 +59,15 @@ async def on_message(message):
     mmb=discord.Embed(title='Here is a new vent!',
     description=f'{message.content}',
     color=discord.Color.blue())
-    mmb.set_thumbnail(url='https://cdn.discordapp.com/attachments/854281338269335562/857977383586889748/KanmaniSample.png')
+    mmb.set_thumbnail(url=client.user.avatar_url_as(format="png"))
+
     await message.channel.send(embed=mmb)
     await client.process_commands(message) 
+  if message.content.startswith('!!botservers'):
+    await message.channel.send("I'm in " + str(len(client.guilds)) + " servers!")
+  if message.content.startswith('!!botservernames'):
+    for x in client.guilds:
+      await message.channel.send(x.id)
 
 
 #Reminders 
@@ -317,8 +323,9 @@ async def kanmani(ctx):
   await msg_em_ok.add_reaction(clap_emoji)
   await msg_em_ok.add_reaction(heart_emoji)
 
+
 #######STUFF FOR RUNNING THE BOT WITH THE FUNCTIONS##############
 
 kanmani_alive()
 #RUNNING THE BOT
-client.run('#') #Token goes here
+client.run('#') #token goes here 
