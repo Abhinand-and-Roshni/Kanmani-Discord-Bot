@@ -143,6 +143,7 @@
       <footer>
         <div class="container">
           <p>Developed by Abhinand G and Roshni Balasubramanian | June 2021</p>
+          <p><a href = "https://github.com/Abhinand-and-Roshni/Kanmani-Discord-Bot">Click Here to Visit the GitHub Repo</a></p>
           <p style = "font-size: 12px; color: rgb(207, 207, 207);">Any suggestions? Email us at kanmani.discord@gmail.com </p>
         </div>
       </footer>
@@ -195,7 +196,6 @@ function topFunction() {
 </script>
 
 <script>
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyB9I0795Euulsjcp19TXPui-9uC6yHDdoc",
   authDomain: "kanmanibot-3363d.firebaseapp.com",
@@ -218,7 +218,6 @@ const firebaseConfig = {
   function submitForm(e) {
       e.preventDefault();
 
-      // Get values
       var name = getInputVal('name');
       var email = getInputVal('email');
       var suggestion = getInputVal('suggestion')
@@ -233,12 +232,10 @@ const firebaseConfig = {
     window.alert('Thank you for your suggestion!');
   }
 
-  // Function to get get form values
   function getInputVal(id) {
       return document.getElementById(id).value;
   }
 
-  // Save message to firebase
   function saveMessage(name, email, suggestion) {
       var newMessageRef = messagesRef.push();
       newMessageRef.set({
