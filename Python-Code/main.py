@@ -5,7 +5,7 @@ import random
 import time
 import praw
 import requests
-from discord.ext import commands
+from discord.ext import commands, tasks
 from discord.utils import get
 from kanmani_alive import kanmani_alive
 r = requests.head(url="https://discord.com/api/v1")
@@ -13,7 +13,7 @@ try:
     print(f"Rate limit {int(r.headers['Retry-After']) / 60} minutes left")
 except:
     print("No rate limit")
-commandinfo = "Here are a list of commands you can try!\n\n\n`!!health` : Start your health reminder clock for reminders every few hours for a day.\n\n`!!pomo` : Pomodoro is a productivity technique which helps you focus. It involves following 25 minutes of work followed by a 5 minute refreshing break. Try the pomodoro technique using this command.\n\n`!!info_vent` :  Want to vent but don't know to whom? Use this command to know how to use the anonymous venting feature.\n\n`!!reminder` : Remind yourself using this command! Write the duration after which you want to be reminder with the first letter of the timeperiod and follow it up with what you want to be reminded about.\nHere is an example : `!!reminder 15m Get Dinner!`\n  seconds: s  |  minutes: m  |  hours: h  |  days:day  \n\n`!!meme` : Want to laugh a bit? Try it out.\n\n`!!coding` : Want some cool coding tips to enhance your knowledge? Try this out!\n\n`!!motivate` : Are you in need for some inspiring words haha. This command gives you some of that plus some more.\n\n`!!study` : Your study motivation posted by strangers!\n\n"
+commandinfo = "Here are a list of commands you can try!\n\n\n`!!health` : Start your health reminder clock for reminders every few hours for a day.\n\n`!!pomo` : Pomodoro is a productivity technique which helps you focus. It involves following 25 minutes of work followed by a 5 minute refreshing break. Try the pomodoro technique using this command.\n\n`!!info_vent` :  Want to vent but don't know to whom? Use this command to know how to use the anonymous venting feature.\n\n`!!reminder` : Remind yourself using this command! Write the duration (after which you want to be reminded) with the first letter of the timeperiod and follow it up with what you want to be reminded about.\nHere is an example : `!!reminder 15m Get Dinner!`\n  seconds: s  |  minutes: m  |  hours: h \n\n`!!meme` : Want to laugh a bit? Try it out.\n\n`!!coding` : In need of some cool coding tips to enhance your knowledge? Try this out!\n\n`!!motivate` : Are you in need for some inspiring words haha. This command gives you some of that plus some more.\n\n`!!study` : Your study motivation posted by strangers!\n\n"
 #EMOJI TO USE
 shh_emoji = '\U0001F910' #be quiet emoji
 book_emoji= "\U0001F4DA" #stack of books emoji
@@ -54,24 +54,66 @@ async def on_message(message):
     await message.channel.send('Hello, ' + message.author.mention +' '+ heart_emoji + ' !')
   if message.content.startswith('!!thank'):
     await message.channel.send("You're welcome " + message.author.mention + '! ' + heart_emoji)
-  if message.content.startswith('!!vent'):
+  if message.content.startswith('!!vent'): #VENTING
     await message.channel.purge(limit = 1)
     mmb=discord.Embed(title='Here is a new vent!',
     description=f'{message.content}',
-    color=discord.Color.blue())
+    color=random.randint(0,0xffffff))
     mmb.set_thumbnail(url=client.user.avatar_url_as(format="png"))
-
+    mmb.set_footer(text="Kanmani | Be mindful | !!kanmani ", icon_url=f"{client.user.avatar_url}")
     await message.channel.send(embed=mmb)
     await client.process_commands(message) 
   if message.content.startswith('!!botservers'):
     await message.channel.send("I'm in " + str(len(client.guilds)) + " servers!")
   if message.content.startswith('!!botservernames'):
     for x in client.guilds:
-      await message.channel.send(x.id)
+      await message.channel.send(x)
 
-
+#self destruct funny
+@client.command()
+async def destruct(ctx):
+  await ctx.send(ctx.author.mention + ', I was nothing but nice to you. Hope you have a good life.')
+  em_dest = discord.Embed(
+    title = 'Self-destructing',
+    description = 'In...3',
+    color=random.randint(0,0xffffff)
+  )
+  em_dest.set_footer(text = "goodbye...")
+  em_edit1 = discord.Embed(
+    title = 'Self-destructing',
+    description = 'In...2',
+    color=random.randint(0,0xffffff)
+  )
+  em_edit1.set_footer(text = "goodbye...")
+  em_edit2 = discord.Embed(
+    title = 'Self-destructing',
+    description = 'In...1',
+    color=random.randint(0,0xffffff)
+  )
+  em_edit2.set_footer(text = "goodbye...")
+  em_edit3 = discord.Embed(
+    title = 'Self-destructing',
+    description = 'In...0',
+    color=random.randint(0,0xffffff)
+  )
+  em_edit3.set_footer(text = "goodbye...")
+  em_edit4 = discord.Embed(
+    title = 'Self-destructing',
+    description = 'LOL. I am not going anywhere. Good luck with that.',
+    color=random.randint(0,0xffffff)
+  )
+  em_edit4.set_footer(text = f"Not leaving {heart_emoji}")
+  dstctmsg1 = await ctx.send(embed = em_dest)
+  await dstctmsg1.edit(embed = em_edit1)
+  await asyncio.sleep(1)
+  await dstctmsg1.edit(embed = em_edit2)
+  await asyncio.sleep(1)
+  await dstctmsg1.edit(embed = em_edit3)
+  await asyncio.sleep(2)
+  await dstctmsg1.edit(embed = em_edit4)
+  
 #Reminders 
-@client.command(case_insensitive = True, aliases = ["remind", "remindme", "Reminder", "Remind", "remainder"])
+@client.command(case_insensitive = True, aliases = ["remind", "renind", "Reminder", "Remind", "remainder"])
 @commands.bot_has_permissions(attach_files = True, embed_links = True)
 async def reminder(ctx, time, *, reminder):
     print(time)
@@ -82,9 +124,6 @@ async def reminder(ctx, time, *, reminder):
     seconds = 0
     if reminder is None:
         rem_em.add_field(name='!!Warning!!', value='Please specify what do you want me to remind you about.') # Error message
-    if time.lower().endswith("d"):
-        seconds += int(time[:-1]) * 60 * 60 * 24
-        counter = f"{seconds // 60 // 60 // 24} days"
     if time.lower().endswith("h"):
         seconds += int(time[:-1]) * 60 * 60
         counter = f"{seconds // 60 // 60} hours"
@@ -97,7 +136,7 @@ async def reminder(ctx, time, *, reminder):
     if seconds == 0:
         rem_em.add_field(name='!!Warning!!', value='Specify a proper duration. \n Example: `!!reminder 15m Get the groceries from the car!`')
     elif seconds < 10:
-        rem_em.add_field(name='!!Warning!!',value='You need a reminder for that time period? The minimum time is 5 mins for a reminder. Try again  \n Example: `!!reminder 15m Get the groceries from the car!`')
+        rem_em.add_field(name='!!Warning!!',value='You need a reminder for that time period? The minimum time is 11s for a reminder. Try again  \n Example: `!!reminder 11s Get the groceries from the car!`')
     elif seconds > 172800:
         rem_em.add_field(name='!!Warning!!', value='That duration is too long!\nMaximum duration is 2 days.')
     else:
@@ -113,7 +152,7 @@ async def reminder(ctx, time, *, reminder):
     await ctx.send(embed=rem_em)
 
 #POMODORO TECHNIQUE
-@client.command()
+@client.command(case_insensitive = True, aliases = ["Pomo", "Pomodoro", "pomodoro", "poma", "pono"])
 async def pomo(ctx):
   await ctx.send(ctx.author.mention)
   em_pomo_start = discord.Embed(
@@ -154,9 +193,10 @@ async def pomo(ctx):
   await pomo_bye.add_reaction(heart_emoji) 
   await pomo_bye.add_reaction(handwave_emoji)
 
-@client.command()
+#health reminders
+@client.command(case_insensitive = True, aliases = ["Health", "hwalth", "heal", "healt"])
 async def health(ctx):
-  await ctx.send("Health Reminder Clock Started For 1 day @everyone")
+  await ctx.send("Health Reminder Clock Started For @everyone")
   remindermsg = discord.Embed(
     title='Water Reminder!',
     description = f'@everyone\n\n Hope you are doing well! \n -Drink water\n -Stretch your body\n -Rest your eyes for 5 seconds\n -Straighten your back\n -You are doing great! Keep it up!\n\n\n **Kanmani is here for you!**', 
@@ -172,21 +212,21 @@ async def health(ctx):
     )
   eyesmsg.set_footer(text="Kanmani | Be mindful | !!kanmani ", icon_url=f"{client.user.avatar_url}")
   eyesmsg.set_thumbnail(url="https://image.shutterstock.com/image-vector/sick-cartoon-eyes-vector-illustration-260nw-177695450.jpg")
-  for i in range(8):
-    await asyncio.sleep(5400)
+  for i in range(24):
+    await asyncio.sleep(10)
     em_rem_msg = await ctx.send(embed = remindermsg)
     await em_rem_msg.add_reaction(tick_emoji)
     await em_rem_msg.add_reaction(X_emoji)
-    await asyncio.sleep(5400)
+    await asyncio.sleep(3600)
     em_eyes_msg = await ctx.send(embed = eyesmsg)
     await em_eyes_msg.add_reaction(tick_emoji)
     await em_eyes_msg.add_reaction(X_emoji)
-    await asyncio.sleep(10)
+    await asyncio.sleep(3600)
     
 
 
 #ADMIN CLEAR MSG
-@client.command()
+@client.command(case_insensitive = True, aliases = ["clear", "clr", "Clr", "Clear", "Clearit"])
 @commands.has_permissions(administrator=True)
 async def clearit(ctx, amount=2):
   await ctx.channel.purge(limit = amount+1)
@@ -208,7 +248,7 @@ async def info(ctx):
   await react_com.add_reaction(star_struck)
 
 #Vent info
-@client.command()
+@client.command(case_insensitive = True, aliases = ["INFOVENT", "Imdo_vent", "indo_vnet", "ifno_vent", "Info_vent"])
 async def info_vent(ctx):
   await ctx.send(ctx.author.mention)
   em_vents = discord.Embed(
@@ -224,7 +264,7 @@ async def info_vent(ctx):
 
 #REDDIT: MOTIVATION, CODING AND PRODUCTIVITY
 #coding tips subreddit#
-@client.command()
+@client.command(case_insensitive = True, aliases = ["cosing", "Coding", "csding", "codingtips", "coders"])
 async def coding(ctx):
 
   code_sub = reddit.subreddit('LearnProgramming').top()
@@ -238,6 +278,7 @@ async def coding(ctx):
     description = f'{submission.url}',
     color=random.randint(0,0xffffff)
   )
+  
   em_codingtip.set_thumbnail(url=ctx.author.avatar_url_as(format="png"))
   em_codingtip.set_footer(text = "brought to you by r/LearnProgramming")
   codingtip_msg = await ctx.send(embed = em_codingtip)
@@ -246,7 +287,7 @@ async def coding(ctx):
   await codingtip_msg.add_reaction(star_struck)
 
 #motivation subreddit#
-@client.command()
+@client.command(case_insensitive = True, aliases = ["Motivate", "motivation", "motivating", "Motivation", "mota"])
 async def motivate(ctx):
 
   motiv_sub = reddit.subreddit('MotivationalPics').top()
@@ -260,6 +301,8 @@ async def motivate(ctx):
     description = 'Here is some motivation for you!',
     color=random.randint(0,0xffffff)
   )
+  em_motiv.set_thumbnail(url=ctx.author.avatar_url_as(format="png"))
+  em_motiv.add_field(name ="`Link for the full thread:`\n", value = "https://www.reddit.com{0}".format(submission.permalink) , inline = False)
   em_motiv.set_image(url = submission.url )
   em_motiv.set_footer(text = "brought to you by r/MotivationalPics")
   motiv_msg = await ctx.send(embed = em_motiv)
@@ -269,7 +312,7 @@ async def motivate(ctx):
   await motiv_msg.add_reaction(tick_emoji)
 
 #meme reddit#
-@client.command()
+@client.command(case_insensitive = True, aliases = ["Meme", "memes", "Memes", "mem", "Mem"])
 async def meme(ctx):
 
   memes_sub = reddit.subreddit('CollegeHomeworkTips').top()
@@ -291,7 +334,7 @@ async def meme(ctx):
   await memes_msg.add_reaction(cowboy_emoji)
 
 #quotes subreddit#
-@client.command()
+@client.command(case_insensitive = True, aliases = ["Study", "studytip", "stidy"])
 async def study(ctx):
 
   quotes_sub = reddit.subreddit('QuotesPorn').top()
@@ -305,6 +348,7 @@ async def study(ctx):
     description = 'Straighten your back and take a sip of water, its time to get productive!',
     color=random.randint(0,0xffffff)
   )
+  em_quotes.add_field(name ="`Link for the full thread:`\n", value = "https://www.reddit.com{0}".format(submission.permalink) , inline = False)
   em_quotes.set_image(url = submission.url)
   em_quotes.set_thumbnail(url=ctx.author.avatar_url_as(format="png"))
   em_quotes.set_footer(text = "brought to you by r/QuotesPorn")
@@ -328,4 +372,4 @@ async def kanmani(ctx):
 
 kanmani_alive()
 #RUNNING THE BOT
-client.run('#') #token goes here 
+client.run('#') 
