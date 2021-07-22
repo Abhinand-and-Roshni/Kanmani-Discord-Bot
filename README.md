@@ -17,10 +17,7 @@ We also made use of the Reddit API to fetch posts from popular subreddits. We al
 Check out our website for the bot link.
 Visit our site : https://abhinand-and-roshni.github.io/Kanmani-Discord-Bot
 
-# Screenshots of the Website 
-![image](https://user-images.githubusercontent.com/81344251/123160009-5108b580-d48b-11eb-8f18-287abf27afa5.png)
 
-![image](https://user-images.githubusercontent.com/81344251/123160042-5a921d80-d48b-11eb-91ea-c7989c3b20d0.png)
 
 # What Kanmani can do
 
@@ -28,7 +25,10 @@ Visit our site : https://abhinand-and-roshni.github.io/Kanmani-Discord-Bot
 
 ![image](https://user-images.githubusercontent.com/81344251/123160153-75fd2880-d48b-11eb-94b3-eb4f5e4158f0.png)
 
+# Screenshots of the Website 
+![image](https://user-images.githubusercontent.com/81344251/123160009-5108b580-d48b-11eb-8f18-287abf27afa5.png)
 
+![image](https://user-images.githubusercontent.com/81344251/123160042-5a921d80-d48b-11eb-91ea-c7989c3b20d0.png)
 
 
 # How to use Kanmani
