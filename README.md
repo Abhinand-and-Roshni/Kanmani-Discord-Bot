@@ -1,5 +1,8 @@
 # Kanmani-Discord-Bot
-
+### Kanmani has been verified by Discord as of 9th February, 2022
+![image](https://user-images.githubusercontent.com/54448939/153172809-d274d2bd-937d-4a50-8e69-a4664ee363b1.png)
+<br>
+<br>
 The bot issues notifications to the server members that remind them to drink water, stretch, rest their eyes from their screens. Anonymous venting feature implemented for users to rant in a safe manner.
 Kanmani also can fetch memes, motivational quotes, coding tips and productivity tips. With Kanmani in your server, there is never a dull moment when you're trying to be productive.
 
