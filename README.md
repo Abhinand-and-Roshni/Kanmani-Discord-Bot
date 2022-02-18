@@ -4,7 +4,7 @@
 <br>
 <br>
 ## Visit our Website 
-Check out our website for the bot link to add on your personal server.
+Check out our website for the bot link to add on your personal server.<br>
 Visit our site: https://abhinand-and-roshni.github.io/Kanmani-Discord-Bot
 ## Technologies Used
 <img width="300" height="145" alt="Screenshot 2021-06-24 at 9 23 26 PM" src="https://user-images.githubusercontent.com/81344251/123294386-6b499e80-d532-11eb-8fd7-f2e69968297a.png"> <img width="300" height="145" alt="Screenshot 2021-06-24 at 9 23 52 PM" src="https://user-images.githubusercontent.com/81344251/123294449-7b617e00-d532-11eb-82a6-81a5c7bcd63c.png">  <img width="300" height="145" alt="Screenshot 2021-06-24 at 9 24 56 PM" src="https://user-images.githubusercontent.com/81344251/123294601-a055f100-d532-11eb-8c9b-1812b9548330.png"> 
