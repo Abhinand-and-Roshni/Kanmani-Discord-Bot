@@ -28,6 +28,7 @@ To see the list of commands, enter !!info onto your preferred text-channel.
 Now Kanmani is ready to use! Enjoy. 
 <br>
 ### Links
+- <a href = "https://ijsrcseit.com/PDF.php?pid=CSEIT228137&v=8&i=1&y=2022&m=January-February">Publication - International Journal of Scientific Research in Computer Science, Engineering and Information Technology (IJSRCSEIT)</a>
 - <a href = "https://abhinand-and-roshni.github.io/Kanmani-Discord-Bot">Website</a>
 - <a href = "https://top.gg/bot/855000784098164786">Top.gg page</a>
 - <a href = "https://discord.com/api/oauth2/authorize?client_id=855000784098164786&permissions=201583697&scope=bot">Add Kanmani to your server</a>
